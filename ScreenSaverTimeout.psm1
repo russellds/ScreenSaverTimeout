@@ -1,6 +1,6 @@
 ﻿<#
     .Synopsis
-       Prevents screen savers from locking your screen.
+       Prevents the screen saver from locking your screen.
     .DESCRIPTION
        Long description
     .EXAMPLE
@@ -19,8 +19,10 @@
        The role this cmdlet belongs to
     .FUNCTIONALITY
        The functionality that best describes this cmdlet
+    .Notes
+        To prevent RDP sessions from ending, you must be focused on the RDP session.
 #>
-function Suspend-ScreenSaverTimeout
+function Start-PreventScreenSaverTimeout
 {
     [CmdletBinding()]
     param
@@ -32,13 +34,9 @@ function Suspend-ScreenSaverTimeout
     )
 
     process
-    {   
-        # Will prevent screen savers from locking your screen.
-        #
-        # To prevent RDP sessions from ending, you must be focused on the RDP session.
-
+    {
         $properties = @{
-            Name = 'DisableScreenSaver'
+            Name = 'PreventScreenSaverTimeout'
             ScriptBlock = {
 
                 $myshell = New-Object -com "Wscript.Shell"
@@ -58,7 +56,7 @@ function Suspend-ScreenSaverTimeout
 
 <#
     .Synopsis
-       Prevents screen savers from locking your screen.
+       Stops preventing the screen saver from locking your screen.
     .DESCRIPTION
        Long description
     .EXAMPLE
@@ -78,32 +76,11 @@ function Suspend-ScreenSaverTimeout
     .FUNCTIONALITY
        The functionality that best describes this cmdlet
 #>
-function Resume-ScreenSaverTimeout
+function Stop-PreventScreenSaverTimeout
 {
-    [CmdletBinding()]
     process
     {   
-        # Will prevent screen savers from locking your screen.
-        #
-        # To prevent RDP sessions from ending, you must be focused on the RDP session.
-
-        $properties = @{
-            Name = 'DisableScreenSaver'
-            ScriptBlock = {
-
-                $myshell = New-Object -com "Wscript.Shell"
-
-                while( $true ) {
-
-                    Start-Sleep -Seconds 60
-
-                    $myshell.sendkeys($Key)
-                }
-            }
-        }
-
-        Start-Job @properties
+        Get-Job -Name 'PreventScreenSaverTimeout' |
+            Remove-Job -Force
     }
 }
-
-Disable-ScreenSaver
