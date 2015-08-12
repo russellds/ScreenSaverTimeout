@@ -12,14 +12,6 @@
     .OUTPUTS
        Output from this cmdlet (if any)
     .NOTES
-       General notes
-    .COMPONENT
-       The component this cmdlet belongs to
-    .ROLE
-       The role this cmdlet belongs to
-    .FUNCTIONALITY
-       The functionality that best describes this cmdlet
-    .Notes
         To prevent RDP sessions from ending, you must be focused on the RDP session.
 #>
 function Start-PreventScreenSaverTimeout
@@ -30,7 +22,10 @@ function Start-PreventScreenSaverTimeout
         # Param1 help description
         [Parameter(ValueFromPipeline=$true,
                    ValueFromPipelineByPropertyName=$true)]
-        $Key = "{F15}"
+        [string]$Key = "{F15}",
+        [Parameter(ValueFromPipeline=$true,
+                   ValueFromPipelineByPropertyName=$true)]
+        [int]$Interval = 60
     )
 
     process
@@ -43,7 +38,7 @@ function Start-PreventScreenSaverTimeout
 
                 while( $true ) {
 
-                    Start-Sleep -Seconds 60
+                    Start-Sleep -Seconds $Interval
 
                     $myshell.sendkeys($Key)
                 }
@@ -69,12 +64,6 @@ function Start-PreventScreenSaverTimeout
        Output from this cmdlet (if any)
     .NOTES
        General notes
-    .COMPONENT
-       The component this cmdlet belongs to
-    .ROLE
-       The role this cmdlet belongs to
-    .FUNCTIONALITY
-       The functionality that best describes this cmdlet
 #>
 function Stop-PreventScreenSaverTimeout
 {
