@@ -53,7 +53,7 @@ function Start-PreventScreenSaverTimeout
     .Synopsis
        Stops preventing the screen saver from locking your screen.
     .DESCRIPTION
-       Long description
+       Stops the prevent screen saver timeout PowerShell job.
     .EXAMPLE
        Example of how to use this cmdlet
     .EXAMPLE
