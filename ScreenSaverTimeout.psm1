@@ -1,21 +1,21 @@
-﻿<#
-    .Synopsis
-       Prevents the screen saver from locking your screen.
-    .DESCRIPTION
-       Long description
-    .EXAMPLE
-       Example of how to use this cmdlet
-    .EXAMPLE
-       Another example of how to use this cmdlet
-    .INPUTS
-       Inputs to this cmdlet (if any)
-    .OUTPUTS
-       Output from this cmdlet (if any)
-    .NOTES
-        To prevent RDP sessions from ending, you must be focused on the RDP session.
-#>
-function Start-PreventScreenSaverTimeout
+﻿function Start-PreventScreenSaverTimeout
 {
+    <#
+        .Synopsis
+        Prevents the screen saver from locking your screen.
+        .DESCRIPTION
+        Long description
+        .EXAMPLE
+        Example of how to use this cmdlet
+        .EXAMPLE
+        Another example of how to use this cmdlet
+        .INPUTS
+        Inputs to this cmdlet (if any)
+        .OUTPUTS
+        Output from this cmdlet (if any)
+        .NOTES
+            To prevent RDP sessions from ending, you must be focused on the RDP session.
+    #>
     [CmdletBinding()]
     param
     (
@@ -49,24 +49,24 @@ function Start-PreventScreenSaverTimeout
     }
 }
 
-<#
-    .Synopsis
-       Stops preventing the screen saver from locking your screen.
-    .DESCRIPTION
-       Stops the prevent screen saver timeout PowerShell job.
-    .EXAMPLE
-       Example of how to use this cmdlet
-    .EXAMPLE
-       Another example of how to use this cmdlet
-    .INPUTS
-       Inputs to this cmdlet (if any)
-    .OUTPUTS
-       Output from this cmdlet (if any)
-    .NOTES
-       General notes
-#>
 function Stop-PreventScreenSaverTimeout
 {
+    <#
+        .Synopsis
+        Stops preventing the screen saver from locking your screen.
+        .DESCRIPTION
+        Stops the prevent screen saver timeout PowerShell job.
+        .EXAMPLE
+        Example of how to use this cmdlet
+        .EXAMPLE
+        Another example of how to use this cmdlet
+        .INPUTS
+        Inputs to this cmdlet (if any)
+        .OUTPUTS
+        Output from this cmdlet (if any)
+        .NOTES
+        General notes
+    #>
     process
     {   
         Get-Job -Name 'PreventScreenSaverTimeout' |
